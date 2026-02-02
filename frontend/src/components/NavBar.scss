@@ -1,0 +1,43 @@
+.navbar {
+  width: 100%;
+  max-height: 80px;
+
+  &-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 16px;
+    max-width: 100%;
+  }
+
+  &-left {
+    display: flex;
+    align-items: center;
+  }
+
+  &-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &-logo {
+    height: 28px;
+    width: auto;
+    display: block;
+  }
+
+  &-bag {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+
+  &-cart-count {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 16px;
+    color: #000;
+  }
+}

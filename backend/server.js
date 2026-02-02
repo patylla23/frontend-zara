@@ -5,7 +5,7 @@ const cors = require('cors');
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const API_TOKEN = process.env.API_TOKEN;
-const BASE_URL = process.env.BASE_URL; // https://prueba-tecnica-api-tienda-moviles.onrender.com
+const BASE_URL = process.env.BASE_URL;
 
 const app = express();
 app.use(cors());
@@ -29,24 +29,15 @@ async function fetchUpstream(url) {
 // PRODUCTS
 app.get('/products', async (req, res) => {
   try {
-    const productsUrl = new URL('/products', BASE_URL).toString();
+    const productsUrl = `${BASE_URL}/products`;
+    
     const { upstreamRes, body } = await fetchUpstream(productsUrl);
 
-
-    if (!upstreamRes.ok) {
-      return res
-        .status(upstreamRes.status)
-        .send(typeof body === 'string' ? body : JSON.stringify(body));
-    }
-
-    if (typeof body === 'string') return res.type('text/plain').send(body);
-    return res.json(body);
+    res.json(body); 
   } catch (e) {
-    const message = e instanceof Error ? e.message : String(e);
-    return res.status(500).send(message);
+    res.status(500).send("Error en el servidor");
   }
 });
-
 
 const PORT = Number(process.env.PORT) || 5001;
 app.listen(PORT, () => {
