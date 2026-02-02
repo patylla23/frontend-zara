@@ -1,0 +1,160 @@
+@use "./variables" as *;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  color: $text;
+  background: radial-gradient(1200px 800px at 20% 10%, rgba($accent, 0.35), transparent 55%),
+    radial-gradient(900px 700px at 80% 20%, rgba(#22c55e, 0.18), transparent 55%),
+    $bg;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95em;
+}
+
+.muted {
+  color: $muted;
+}
+
+.small {
+  font-size: 0.9rem;
+}
+
+.app {
+  min-height: 100%;
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 28px 18px 34px;
+  display: grid;
+  gap: 18px;
+}
+
+.app__header,
+.app__footer {
+  padding: 18px 20px;
+  background: $panel;
+  border: 1px solid $border;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  backdrop-filter: blur(10px);
+}
+
+.app__header h1 {
+  margin: 0 0 6px;
+  letter-spacing: 0.2px;
+}
+
+.app__main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 860px) {
+  .app__main {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.card {
+  padding: 18px 20px;
+  background: $panel;
+  border: 1px solid $border;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  backdrop-filter: blur(10px);
+}
+
+.card__title {
+  margin: 0 0 8px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.row--space {
+  justify-content: space-between;
+}
+
+.input {
+  flex: 1 1 280px;
+  min-width: 240px;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid $border;
+  background: rgba(0, 0, 0, 0.22);
+  color: $text;
+  outline: none;
+}
+
+.input:focus {
+  border-color: rgba($accent, 0.7);
+  box-shadow: 0 0 0 3px rgba($accent, 0.25);
+}
+
+.btn {
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba($accent, 0.55);
+  background: rgba($accent, 0.28);
+  color: $text;
+  cursor: pointer;
+  transition: transform 0.05s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:hover {
+  background: rgba($accent, 0.36);
+  border-color: rgba($accent, 0.72);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn--ghost {
+  border-color: $border;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.alert {
+  margin: 14px 0 0;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid $border;
+  background: rgba(0, 0, 0, 0.22);
+  overflow: auto;
+}
+
+.alert--error {
+  border-color: rgba($danger, 0.55);
+  background: rgba($danger, 0.12);
+}
+
+.alert--ok {
+  border-color: rgba($ok, 0.55);
+  background: rgba($ok, 0.12);
+}
+

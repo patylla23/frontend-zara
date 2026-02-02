@@ -1,0 +1,20 @@
+{
+  "name": "frontend-zara",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "concurrently -n BACKEND,FRONTEND -c red,blue \"npm -w backend run dev\" \"npm -w frontend run dev\"",
+    "start": "npm -w backend run start",
+    "build": "npm -w frontend run build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
+
