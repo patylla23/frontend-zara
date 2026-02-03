@@ -1,51 +1,22 @@
-import { useEffect, useState } from 'react';
-import NavBar from '../components/NavBar';
+import { useContext } from "react";
+import "./HomePage.scss";
+import NavBar from "../components/NavBar";
+import SearchBar from "../components/SearchBar";
+import { AppContext } from "../context/AppContext";
 
 function HomePage() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const getProducts = async () => {
-      try {
-        setLoading(true);
-
-        const response = await fetch('http://localhost:5001/products', {
-          method: 'GET',
-          headers: {
-            'x-api-key': process.env.REACT_APP_API_TOKEN,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error(`Error HTTP: ${response.status} - No autorizado o servidor caído`);
-        }
-
-        const data = await response.json();
-        setProducts(data);
-      } catch (err) {
-        console.error('Error en la comunicación con el Backend:', err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getProducts();
-  }, []);
+  const { products, loading, error } = useContext(AppContext);
 
   return (
     <>
       <NavBar />
       <main className="home-content">
+        <SearchBar />
         <header className="App-header">
-          <h1>Tienda de Móviles</h1>
-
           {loading && <p className="loading">Cargando productos...</p>}
 
           {error && (
-            <p className="error" style={{ color: 'red' }}>
+            <p className="error" style={{ color: "red" }}>
               Error: {error}
             </p>
           )}
@@ -56,13 +27,16 @@ function HomePage() {
                 <ul>
                   {products.map((product, index) => (
                     <li key={`${product.id}-${index}`}>
-                      <strong>{product.brand}</strong> - {product.model || product.name}
+                      <strong>{product.brand}</strong> -{" "}
+                      {product.model || product.name}
                       {product.price && ` (${product.price}€)`}
                     </li>
                   ))}
                 </ul>
               ) : (
-                <p>No hay productos disponibles en este momento.</p>
+                <p className="no-results">
+                  No hay resultados relacionados con la búsqueda.
+                </p>
               )}
             </div>
           )}

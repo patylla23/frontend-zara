@@ -1,11 +1,14 @@
-import './App.scss';
-import HomePage from './pages/HomePage';
+import "./App.scss";
+import { AppProvider } from "./context/AppContext";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <div className="App">
-      <HomePage />
-    </div>
+    <AppProvider>
+      <div className="App">
+        <HomePage />
+      </div>
+    </AppProvider>
   );
 }
 
