@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './NavBar.scss';
 import logoMbst from '../assets/logo_mbst.png';
 import bagInactive from '../assets/bag_inactive.png';
@@ -10,7 +11,9 @@ function NavBar() {
     <nav className="navbar">
       <div className="navbar-content">
         <div className="navbar-left">
-          <img src={logoMbst} alt="MBST Logo" className="navbar-logo" />
+          <Link to="/products" className="navbar-logo-link" aria-label="Ir a inicio">
+            <img src={logoMbst} alt="MBST Logo" className="navbar-logo" />
+          </Link>
         </div>
         <div className="navbar-right">
           <img src={bagInactive} alt="Carrito" className="navbar-bag" />

@@ -27,9 +27,12 @@ async function fetchUpstream(url) {
 }
 
 // PRODUCTS
+const DEFAULT_LIMIT = 20;
+
 app.get("/products", async (req, res) => {
   try {
-    const productsUrl = `${BASE_URL}/products`;
+    const limit = req.query.limit != null ? req.query.limit : DEFAULT_LIMIT;
+    const productsUrl = `${BASE_URL}/products?limit=${limit}`;
     const { body } = await fetchUpstream(productsUrl);
 
     const list = Array.isArray(body) ? body : [];
@@ -49,6 +52,26 @@ app.get("/products", async (req, res) => {
       : list;
 
     res.json(products);
+  } catch (e) {
+    res.status(500).send("Error en el servidor");
+  }
+});
+
+// PRODUCT BY ID
+app.get("/products/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const productUrl = `${BASE_URL}/products/${id}`;
+    const { upstreamRes, body } = await fetchUpstream(productUrl);
+
+    if (upstreamRes.status === 404) {
+      return res.status(404).send("Producto no encontrado");
+    }
+    if (!upstreamRes.ok) {
+      return res.status(upstreamRes.status).send("Error en el servidor");
+    }
+
+    res.json(body);
   } catch (e) {
     res.status(500).send("Error en el servidor");
   }

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import "./HomePage.scss";
 import NavBar from "../components/NavBar";
 import SearchBar from "../components/SearchBar";
+import ProductList from "../components/ProductList";
 import { AppContext } from "../context/AppContext";
 
 function HomePage() {
@@ -22,22 +23,8 @@ function HomePage() {
           )}
 
           {!loading && !error && (
-            <div className="products-list">
-              {products.length > 0 ? (
-                <ul>
-                  {products.map((product, index) => (
-                    <li key={`${product.id}-${index}`}>
-                      <strong>{product.brand}</strong> -{" "}
-                      {product.model || product.name}
-                      {product.price && ` (${product.price}€)`}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="no-results">
-                  No hay resultados relacionados con la búsqueda.
-                </p>
-              )}
+            <div className="home-products">
+              <ProductList products={products} />
             </div>
           )}
         </header>
