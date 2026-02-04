@@ -1,0 +1,17 @@
+.back-button {
+  background-color: transparent;
+  border: none;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 16px;
+  cursor: pointer;
+
+
+  &-container {
+   height: 44px;
+  }
+
+  &__icon {
+   margin-right: 8px;
+  }
+}

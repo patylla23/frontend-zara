@@ -1,8 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./ProductItemCard.scss";
 
 function ProductItemCard({ product }) {
   return (
+    <Link to={`/products/${product.id}`} className="product-card-link">
     <article className="product-card">
       {product.imageUrl && (
         <div className="product-card__image-wrap">
@@ -13,7 +15,7 @@ function ProductItemCard({ product }) {
           />
         </div>
       )}
-      <div>
+      <div className="product-card__info">
         {product.brand && (
           <p className="product-card__brand">{product.brand.toUpperCase()}</p>
         )}
@@ -27,6 +29,7 @@ function ProductItemCard({ product }) {
         </div>
       </div>
     </article>
+    </Link>
   );
 }
 
