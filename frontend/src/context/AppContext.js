@@ -7,8 +7,17 @@ export const AppProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const addToCart = useCallback((item) => {
+    setCart((prev) => [...prev, item]);
+  }, []);
+
+  const removeFromCart = useCallback((index) => {
+    setCart((prev) => prev.filter((_, i) => i !== index));
+  }, []);
 
   const loadProducts = useCallback(async (search) => {
     try {
@@ -35,6 +44,9 @@ export const AppProvider = ({ children }) => {
     setSearchQuery,
     products,
     resultsCount: products.length,
+    cart,
+    addToCart,
+    removeFromCart,
     loading,
     error,
   };

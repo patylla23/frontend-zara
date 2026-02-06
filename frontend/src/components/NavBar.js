@@ -3,9 +3,14 @@ import { Link } from 'react-router-dom';
 import './NavBar.scss';
 import logoMbst from '../assets/logo_mbst.png';
 import bagInactive from '../assets/bag_inactive.png';
+import bagActive from '../assets/bag_active.png';
+import { AppContext } from "../context/AppContext";
+import { useContext } from "react";
+import { useLocation } from "react-router-dom";
 
 function NavBar() {
-  const cartCount = 0;
+  const { cart } = useContext(AppContext);
+  const { pathname } = useLocation();
 
   return (
     <nav className="navbar">
@@ -15,10 +20,18 @@ function NavBar() {
             <img src={logoMbst} alt="MBST Logo" className="navbar-logo" />
           </Link>
         </div>
-        <div className="navbar-right">
-          <img src={bagInactive} alt="Carrito" className="navbar-bag" />
-          <span className="navbar-cart-count">{cartCount}</span>
-        </div>
+        {pathname !== "/checkout" && (
+          <div className="navbar-right">
+            <Link to="/checkout" className="navbar-bag-link" aria-label="Ir a carrito">
+            <img
+              src={(cart?.length ?? 0) > 0 ? bagActive : bagInactive}
+              alt="Carrito"
+              className="navbar-bag"
+              />
+            <span className="navbar-cart-count">{cart?.length ?? 0}</span>
+              </Link>
+          </div>
+        )}
       </div>
     </nav>
   );

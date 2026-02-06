@@ -26,6 +26,7 @@
   &-right {
     display: flex;
     align-items: center;
+    flex-direction: column;
     gap: 8px;
   }
 
@@ -39,12 +40,22 @@
     height: 22px;
     width: auto;
     display: block;
+    cursor: pointer;
+
+    &-link {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+    }
+
+&:hover {
+  transform: scale(1.1);
+}
   }
 
   &-cart-count {
     font-size: 16px;
-    font-weight: 300;
     line-height: 16px;
-    color: #000;
   }
 }

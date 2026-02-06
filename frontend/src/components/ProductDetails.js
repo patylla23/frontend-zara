@@ -1,8 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import "./ProductDetails.scss";
 import ProductItemCard from "./ProductItemCard";
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
 
 function ProductDetails({ product }) {
+  const navigate = useNavigate();
+  const { addToCart } = useContext(AppContext);
   const [selectedStorage, setSelectedStorage] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [hoveredColor, setHoveredColor] = useState(null);
@@ -54,7 +58,7 @@ function ProductDetails({ product }) {
   const selectedStorageData = storageOptions.find(
     (s) => s.capacity === selectedStorage
   );
-  const displayPrice = product.basePrice ?? selectedStorageData?.price;
+  const displayPrice = selectedStorageData?.price ?? product.basePrice;
 
   return (
     <article className="product-details">
@@ -136,6 +140,16 @@ function ProductDetails({ product }) {
       <button
         className="product-details__add-button"
         disabled={storageOptions.length > 0 && !selectedStorage}
+        onClick={() => {
+          addToCart({
+            ...product,
+            imageUrl: displayImage,
+            selectedStorage,
+            selectedColor,
+            basePrice: displayPrice,
+          });
+          navigate("/checkout");
+        }}
       >
         AÑADIR
       </button>
@@ -249,7 +263,7 @@ function ProductDetails({ product }) {
         >
           {similarProducts.length > 0 ? (
             similarProducts.map((item) => (
-              <ProductItemCard key={item.id} product={item} />
+              <ProductItemCard key={`${item.id}-${item.name}`} product={item} />
             ))
           ) : null}
         </div>
