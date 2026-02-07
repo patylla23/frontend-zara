@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.REACT_APP_BASE_URL;
+const API_BASE_URL = process.env.REACT_APP_BASE_URL || "/api";
 const API_TOKEN = process.env.REACT_APP_API_TOKEN;
 
 async function parseResponseBody(response) {

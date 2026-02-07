@@ -28,8 +28,9 @@ async function fetchUpstream(url) {
 
 // PRODUCTS
 const DEFAULT_LIMIT = 20;
+const apiRouter = express.Router();
 
-app.get("/products", async (req, res) => {
+apiRouter.get("/products", async (req, res) => {
   try {
     const limit = req.query.limit != null ? req.query.limit : DEFAULT_LIMIT;
     const productsUrl = `${BASE_URL}/products?limit=${limit}`;
@@ -58,7 +59,7 @@ app.get("/products", async (req, res) => {
 });
 
 // PRODUCT BY ID
-app.get("/products/:id", async (req, res) => {
+apiRouter.get("/products/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const productUrl = `${BASE_URL}/products/${id}`;
@@ -77,8 +78,15 @@ app.get("/products/:id", async (req, res) => {
   }
 });
 
+app.use(apiRouter);
+app.use("/api", apiRouter);
+
 const PORT = Number(process.env.PORT) || 5001;
-app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Backend escuchando en http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    // eslint-disable-next-line no-console
+    console.log(`Backend escuchando en http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
