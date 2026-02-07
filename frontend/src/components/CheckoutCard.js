@@ -36,7 +36,7 @@ function CheckoutCard({ product, onRemove }) {
               {product.basePrice} EUR
             </span>
           )}
-        <div>
+        <div className="checkout-card__remove-container">
           <button
             type="button"
             className="checkout-card__remove"

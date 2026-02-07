@@ -4,7 +4,11 @@ import "./ProductItemCard.scss";
 
 function ProductItemCard({ product }) {
   return (
-    <Link to={`/products/${product.id}`} className="product-card-link">
+    <Link
+      to={`/products/${product.id}`}
+      className="product-card-link"
+      aria-label="Ver detalle de producto"
+    >
     <article className="product-card">
       {product.imageUrl && (
         <div className="product-card__image-wrap">

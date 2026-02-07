@@ -16,7 +16,7 @@ function CheckoutPage() {
   return (
     <div className="checkout-page">
       <NavBar />
-      <main className="checkout-main">
+      <main className="checkout-main" aria-label="Carrito de compra">
         <h3 className="checkout-title">CART ({cartCount})</h3>
         {(cart ?? []).map((product, index) => (
           <div key={`${product?.id}-${index}`}>
@@ -28,22 +28,22 @@ function CheckoutPage() {
         ))}
       </main>
       <footer className="checkout-footer">
-        {!isEmpty && (
-          <div className="checkout-total">
-            <p>TOTAL</p>
-            <p>{total} EUR</p>
-          </div>
-        )}
         <div
-          className={`checkout__cta ${isEmpty ? "checkout__cta--single" : "checkout__cta--double"}`}
+          className={`checkout-footer__inner ${isEmpty ? "checkout-footer__inner--empty" : "checkout-footer__inner--with-items"}`}
         >
           <Link to="/products" className="checkout__cta-link">
-            <button type="button" className="checkout__cta-button checkout__cta-button--outline">
+            <button type="button" className="checkout__cta-button checkout__cta-button--outline" aria-label="Continuar comprando">
               CONTINUE SHOPPING
             </button>
           </Link>
           {!isEmpty && (
-            <button type="button" className="checkout__cta-button checkout__cta-button--solid">
+            <div className="checkout-total">
+              <p>TOTAL</p>
+              <p>{total} EUR</p>
+            </div>
+          )}
+          {!isEmpty && (
+            <button type="button" className="checkout__cta-button checkout__cta-button--solid" aria-label="Proceder al pago">
               PAY
             </button>
           )}

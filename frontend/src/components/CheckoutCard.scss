@@ -1,9 +1,13 @@
+@import '../styles/main.scss';
+
 .checkout-card {
   display: flex;
+  margin-bottom: 16px;
+  gap: 32px;
+
 
   &__image-wrap {
     flex-shrink: 0;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,6 +17,7 @@
     width: 160px;
     height: 198px;
     object-fit: contain;
+    display: block;
   }
 
   &__info {
@@ -38,9 +43,25 @@
     border: none;
     background: none;
     font-size: 12px;
-    color: rgba(223, 0, 0, 1);
+    color: $text-color-alert;
     text-decoration: none;
     cursor: pointer;
     margin-top: 24px;
   }
+}
+
+@include tablet {
+.checkout-card {
+  padding-top: 40px;
+}
+  
+  .checkout-card__image {
+    width: 262px;
+    height: 324px;
+  }
+
+  .checkout-card__remove-container {
+    align-self: flex-start;
+    margin-top: auto;
+  } 
 }

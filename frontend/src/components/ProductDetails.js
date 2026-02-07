@@ -73,15 +73,15 @@ function ProductDetails({ product }) {
             />
           </div>
         )}
-        <h1 className="product-details__name">{product.name?.toUpperCase()}</h1>
-        <p className="product-details__price">
-          {selectedStorage ? `${displayPrice} EUR` : `From ${displayPrice} EUR`}
-        </p>
-      </section>
+        <div className="product-details__info-column">
+          <h1 className="product-details__name">{product.name?.toUpperCase()}</h1>
+          <p className="product-details__price">
+            {selectedStorage ? `${displayPrice} EUR` : `From ${displayPrice} EUR`}
+          </p>
 
-      {/* Storage options */}
-      {storageOptions.length > 0 && (
-        <section className="product-details__option">
+          {/* Storage options */}
+          {storageOptions.length > 0 && (
+            <section className="product-details__option">
           <p className="product-details__option-label">
             STORAGE ¿HOW MUCH SPACE DO YOU NEED?
           </p>
@@ -136,23 +136,26 @@ function ProductDetails({ product }) {
         </section>
       )}
 
-      {/* Button */}
-      <button
-        className="product-details__add-button"
-        disabled={storageOptions.length > 0 && !selectedStorage}
-        onClick={() => {
-          addToCart({
-            ...product,
-            imageUrl: displayImage,
-            selectedStorage,
-            selectedColor,
-            basePrice: displayPrice,
-          });
-          navigate("/checkout");
-        }}
-      >
-        AÑADIR
-      </button>
+          {/* Button */}
+          <button
+            className="product-details__add-button"
+            disabled={storageOptions.length > 0 && !selectedStorage}
+            aria-label={"Añadir al carrito"}
+            onClick={() => {
+              addToCart({
+                ...product,
+                imageUrl: displayImage,
+                selectedStorage,
+                selectedColor,
+                basePrice: displayPrice,
+              });
+              navigate("/checkout");
+            }}
+          >
+            AÑADIR
+          </button>
+        </div>
+      </section>
 
       {/* Specifications */}
       <section className="product-details__specs">
@@ -243,6 +246,7 @@ function ProductDetails({ product }) {
         <div
           ref={carouselRef}
           className="product-details__carousel-scroll"
+          aria-label="Lista de productos similares"
           onScroll={() => {
             const el = carouselRef.current;
             if (!el) return;

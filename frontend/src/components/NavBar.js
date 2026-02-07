@@ -13,7 +13,7 @@ function NavBar() {
   const { pathname } = useLocation();
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" aria-label="Navegación principal">
       <div className="navbar-content">
         <div className="navbar-left">
           <Link to="/products" className="navbar-logo-link" aria-label="Ir a inicio">
@@ -22,7 +22,7 @@ function NavBar() {
         </div>
         {pathname !== "/checkout" && (
           <div className="navbar-right">
-            <Link to="/checkout" className="navbar-bag-link" aria-label="Ir a carrito">
+            <Link to="/checkout" className="navbar-bag-link" aria-label="Ir al carrito">
             <img
               src={(cart?.length ?? 0) > 0 ? bagActive : bagInactive}
               alt="Carrito"

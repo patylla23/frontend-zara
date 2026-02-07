@@ -1,3 +1,5 @@
+@import '../styles/main.scss';
+
 .search-section {
   max-height: 87px;
   padding: 12px 0;
@@ -14,7 +16,7 @@
   align-items: center;
   box-sizing: border-box;
   padding: 12px 0 4px;
-  border-bottom: 0.5px solid rgba(0, 0, 0, 1);
+  border-bottom: 0.5px solid $border-color-black;
   gap: 24px;
 
   &-input {
@@ -26,10 +28,10 @@
     outline: none;
     padding: 0;
     font-size: 16px;
-    color: rgba(0, 0, 0, 1);
+    color: $text-color-primary;
 
     &::placeholder {
-      color: rgba(170, 170, 170, 1);
+      color: $text-color-gray;
     }
   }
 
