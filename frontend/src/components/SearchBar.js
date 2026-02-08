@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./SearchBar.scss";
-import CloseIcon from "../assets/close_icon.png";
+import CloseIcon from "../assets//icons/close_icon.svg";
 import { AppContext } from "../context/AppContext";
 
 function SearchBar() {
@@ -24,7 +24,7 @@ function SearchBar() {
             onClick={() => setSearchQuery("")}
             aria-label="Borrar búsqueda"
           >
-            <img src={CloseIcon} alt="" className="search-bar-icon" />
+            <img src={CloseIcon} alt="Borrar búsqueda" className="search-bar-icon" />
           </button>
         )}
       </div>

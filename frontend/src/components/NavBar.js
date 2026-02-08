@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.scss';
-import logoMbst from '../assets/logo_mbst.png';
-import bagInactive from '../assets/bag_inactive.png';
-import bagActive from '../assets/bag_active.png';
+import logoMbst from "../assets/logo_mbst.svg";
+import bagInactive from '../assets/bag_inactive.svg';
+import bagActive from '../assets/bag_active.svg';
 import { AppContext } from "../context/AppContext";
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";

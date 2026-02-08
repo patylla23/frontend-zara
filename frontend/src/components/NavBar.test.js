@@ -2,8 +2,8 @@ import React from "react";
 import { screen } from "@testing-library/react";
 import NavBar from "./NavBar";
 import { renderWithProviders } from "../test-utils";
-import bagActive from "../assets/bag_active.png";
-import bagInactive from "../assets/bag_inactive.png";
+import bagActive from "../assets/bag_active.svg";
+import bagInactive from "../assets/bag_inactive.svg";
 
 describe("NavBar", () => {
   test("show logo and empty cart counter", () => {
