@@ -10,6 +10,32 @@ export const AppProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const isCartInitialized = React.useRef(false);
+
+  useEffect(() => {
+    if (isCartInitialized.current) return;
+    isCartInitialized.current = true;
+    try {
+      const savedCart = localStorage.getItem("cart");
+      if (savedCart) {
+        const parsed = JSON.parse(savedCart);
+        if (Array.isArray(parsed)) {
+          setCart(parsed);
+        }
+      }
+    } catch (e) {
+      console.error("Error loading cart from localStorage:", e);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isCartInitialized.current) return;
+    try {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    } catch (e) {
+      console.error("Error saving cart to localStorage:", e);
+    }
+  }, [cart]);
 
   const addToCart = useCallback((item) => {
     setCart((prev) => [...prev, item]);
