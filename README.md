@@ -4,7 +4,7 @@ Web application focused on browsing, searching, and managing a mobile phone
 catalog, allowing users to view device details and manage a shopping cart.
 
 ## 🌐 Live demo 
-https://frontend-zara-dyswt67zz-patriciajuradodebilbaos-projects.vercel.app/products
+[Frontend Challenge Zara](https://frontend-zara-dyswt67zz-patriciajuradodebilbaos-projects.vercel.app/products)
 ## 📝 Requirements
 
 - Phone list view
