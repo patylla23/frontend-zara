@@ -16,6 +16,8 @@ function ProductDetailsPage() {
     if (!id) return;
     let cancelled = false;
 
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
     fetchProduct(id).then((data) => {
       if (!cancelled) setProduct(data);
     });
